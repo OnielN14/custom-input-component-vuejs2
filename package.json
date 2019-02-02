@@ -3,7 +3,17 @@
   "main" : "dist/main.js",
   "module" : "src/index.js",
   "name": "custom-input-component-vuejs2",
+  "author": {
+    "name" : "Daniyal Ahmad Rizaldhi",
+    "email" : "daniyal.ahmadrizaldhi@gmail.com"
+  },
+  "description": "Custom input component for Vue 2.x",
+  "keyword" :["vue", "component", "custom input", "radiogroup", "radio", "checkbox", "input"], 
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OnielN14/custom-input-component-vuejs2.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

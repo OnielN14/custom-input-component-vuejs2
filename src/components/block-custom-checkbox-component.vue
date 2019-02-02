@@ -18,9 +18,6 @@ export default {
   components:{
     Checkbox
   },
-  mounted(){
-    console.log(this.selected);
-  },
   data(){
     return {
       selected : ""
@@ -28,7 +25,7 @@ export default {
   },
   methods:{
     updateValue(){
-      // this.$emit('input', this.selected)
+      this.$emit('input', this.selected)
     }
   }
 }
