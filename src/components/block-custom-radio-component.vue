@@ -2,7 +2,7 @@
   <section>
     <h3>{{blockTitle}}</h3>
 
-    <radio v-for="(item,index) in radioData.data" :key="index" :nameGroup="radioData.name" :values="item.value" :text="item.text" :id="radioData.name+index" v-model="selected" @input="updateValue"></radio>
+    <radio v-for="(item,index) in radioData.data" :key="index" :nameGroup="radioData.name" :values="item.value" :label="item.label" :id="radioData.name+index" v-model="selected" @input="updateValue"></radio>
 
   </section>
 </template>
