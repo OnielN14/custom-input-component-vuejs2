@@ -1,47 +1,47 @@
 <template>
   <div id="app">
-    <form @submit.prevent="submit">
+    <vue-checkbox
+			v-for="(item, index) in checkboxHobby.data"
+			:id="checkboxHobby.name+index"
+			:key="index"
+			:nameGroup="checkboxHobby.name"
+			:values="item.value"
+			:label="item.label"
+			:modelValue = "form.hobby"
+			v-model="form.hobby"></vue-checkbox>
 
-      <checkbox v-for="(item, index) in checkboxHobby.data" :id="checkboxHobby.name+index" :key="index" :nameGroup="checkboxHobby.name" :values="item.value" :label="item.label" v-model="selectedHobi"></checkbox>
-      <!-- <radio-block v-model="selectedAgama" :blockTitle="radioAgama.title" :radioData="radioAgama"></radio-block>
-
-      <checkbox-block v-model="checkboxHobby" :blockTitle="checkboxHobby.title" :checkboxData="checkboxHobby"></checkbox-block> -->
-
-      <!-- <button type="button" name="btnKirim" @click="submit">Kirim</button> -->
-    </form>
-
-    <div class="">
-      <!-- Agama : {{selectedAgama}} -->
-      Selected : {{selectedHobi}}
-    </div>
+			<div>
+			<p>Selected : {{form.hobby}}</p>
+			</div>
   </div>
 </template>
 
 <script>
-import Checkbox from '../components/custom-input/input-checkbox-component.vue'
-
-import RadioBlock from '../components/block-custom-radio-component.vue'
-import CheckboxBlock from '../components/block-custom-checkbox-component.vue'
+import {VueRadio,VueRadioBlock,VueCheckbox,VueCheckboxBlock} from '../index.js'
 
 export default {
   name: 'app',
   components: {
-    Checkbox,
-    CheckboxBlock,
-    RadioBlock
+    VueRadio,
+    VueRadioBlock,
+    VueCheckbox,
+    VueCheckboxBlock
   },
   data(){
     return {
-      selectedAgama : '',
-      selectedHobi : '',
-      radioGender : {
-        title : 'Jenis Kelamin',
-        name : 'gender',
-        data : [
-          { value : 0, label : 'Laki-laki'},
-          { value : 1, label : 'Perempuan'},
-        ]
-      },
+      form:{
+				hobby : ""
+			},
+			checkboxHobby : {
+				name : 'hobby',
+				titile : 'Hobby',
+				data: [
+					{value:"soccer", label: "Soccer"},
+					{value:"watching_anime", label: "Watching Anime"},
+					{value:"playing_with_cat", label: "Playing with Cat"},
+					{value:"read_history_books", label: "Read History Books"},
+				]
+			},
       radioAgama : {
         title : 'Agama',
         name : 'agama',
@@ -53,31 +53,12 @@ export default {
           { value : 4, label : 'Hindu'},
           { value : 5, label : 'Konghucu'},
         ]
-      },
-      checkboxHobby : {
-        title : 'Hobi',
-        name : 'hobi',
-        data : [
-          { value : 0, label : 'Baca Manga'},
-          { value : 1, label : 'Stalking Mantan'},
-          { value : 2, label : 'Main Game'},
-          { value : 3, label : 'Bikin Gambar'}
-        ]
       }
     }
   },
   methods:{
     submit(){
-      let form = document.querySelector('form')
-      let formData = new FormData(form)
-
-      let object = {}
-      formData.forEach(function(value, key){
-          object[key] = value
-      })
-      var json = JSON.stringify(object)
-
-      console.log(json)
+      console.log(this.form);
     }
   }
 }
