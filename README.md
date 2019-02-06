@@ -23,7 +23,7 @@ Creating input field isn't same anymore. :D
 |values|The value of the radio or checkbox element.|
 |nameGroup|The "name" attribute for grouping the element.|
 |label|The value for the label element.|
-|modelValue|Optional. It is used to mimic the v-model behaviour for checkbox element. Filled with the name of the v-model. Only for checkbox (VueCheckbox)|
+|modelValue|It is used to mimic the v-model behaviour for checkbox element and fix the reactivity for radiobox. Filled with the name of the v-model.|
 
 ### Block Components
 #### Radio Block and Checkbox Block
@@ -78,6 +78,7 @@ export default {
 			:nameGroup="radioGender.name"
 			:values="item.value"
 			:label="item.label"
+			:modelValue="form.gender"
 			v-model="form.gender"></vue-radio>
 
 			<div>
