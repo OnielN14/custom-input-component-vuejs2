@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <vue-checkbox
-			v-for="(item, index) in checkboxHobby.data"
-			:id="checkboxHobby.name+index"
-			:key="index"
-			:nameGroup="checkboxHobby.name"
-			:values="item.value"
-			:label="item.label"
-			:modelValue = "form.hobby"
-			v-model="form.hobby"></vue-checkbox>
+      <!-- <vue-textbox v-model="value" name-group="test" id="test1" :values="selected">
+      </vue-textbox>
+      
+      <vue-radio v-model="selected" v-for="(item, index) in dataRadio.data" :key="index" :id="dataRadio.name + index" :label="item.label" :values="item.value" :name-group="dataRadio.name">
+
+      </vue-radio>
 
 			<div>
-			<p>Selected : {{form.hobby}}</p>
-			</div>
+			<p>In the TextBox : {{value}}</p>
+			<p>Selected from Radio : {{selected}}</p>
+			</div> -->
+
+      <div>
+        <vue-textbox v-for="(item,index) in dataTextbox" :key="index" :name-group="item.name" :show-label="item.showLabel" :label="item.label" v-model="availableTextbox[index]" :id="item.name+index">
+
+        </vue-textbox>
+      </div>
+      <div>
+        <p v-for="(item,index) in availableTextbox" :key="index">{{item}}</p>
+      </div>
   </div>
 </template>
 
 <script>
-import {VueRadio,VueRadioBlock,VueCheckbox,VueCheckboxBlock} from '../index.js'
+import {VueRadio,VueRadioBlock,VueCheckbox,VueCheckboxBlock,VueTextbox} from '../index.js'
 
 export default {
   name: 'app',
@@ -25,40 +32,39 @@ export default {
     VueRadio,
     VueRadioBlock,
     VueCheckbox,
-    VueCheckboxBlock
+    VueCheckboxBlock,
+    VueTextbox
   },
   data(){
     return {
-      form:{
-				hobby : ""
-			},
-			checkboxHobby : {
-				name : 'hobby',
-				titile : 'Hobby',
-				data: [
-					{value:"soccer", label: "Soccer"},
-					{value:"watching_anime", label: "Watching Anime"},
-					{value:"playing_with_cat", label: "Playing with Cat"},
-					{value:"read_history_books", label: "Read History Books"},
-				]
-			},
-      radioAgama : {
-        title : 'Agama',
-        name : 'agama',
-        data : [
-          { value : 0, label : 'Islam'},
-          { value : 1, label : 'Kristen Katolik'},
-          { value : 2, label : 'Kristen Protestan'},
-          { value : 3, label : 'Buddha'},
-          { value : 4, label : 'Hindu'},
-          { value : 5, label : 'Konghucu'},
+      availableTextbox:[],
+      value:'',
+      selected:'',
+      dataRadio:{
+        name:'radio',
+        data:[
+          {value:1, label:'Satu'},
+          {value:2, label:'Dua'},
+          {value:3, label:'Tiga'},
+          {value:4, label:'Empat'},
         ]
-      }
+      },
+      dataTextbox:[
+        {name:'firstname',label:'Firstname', showLabel:true},
+        {name:'lastname',label:'Lasstname', showLabel:true},
+        {name:'phonenumber',label:'Phone Number', showLabel:true},
+        {name:'email',label:'Email', showLabel:true},
+      ]
     }
   },
   methods:{
     submit(){
       console.log(this.form);
+    }
+  },
+  watch:{
+    selected(newValue){
+      this.value = newValue
     }
   }
 }
